@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register - House Rental</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .auth-container {
+            max-width: 440px;
+            margin: 4rem auto;
+            background: white;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">🏠 HomeRentals</a>
+        <div class="nav-links">
+            <a href="/">Browse Listings</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="tab-buttons">
+            <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">Sign In</button>
+            <button class="tab-btn" id="tabRegister" onclick="switchTab('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" required placeholder="you@domain.com">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="search-btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" style="display: none;">
+            <div class="form-group">
+                <label for="regName">Full Name</label>
+                <input type="text" id="regName" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label for="regEmail">Email Address</label>
+                <input type="email" id="regEmail" required placeholder="you@domain.com">
+            </div>
+            <div class="form-group">
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" required placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label for="regRole">I am a</label>
+                <select id="regRole" required>
+                    <option value="TENANT">Tenant (Looking for rent)</option>
+                    <option value="LANDLORD">Landlord (Listing properties)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="regPhone">Phone Number</label>
+                <input type="tel" id="regPhone" placeholder="9876543210">
+            </div>
+            <button type="submit" class="search-btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 House Rental Platform | Pure Java OOP & MySQL JDBC Project</p>
+    </footer>
+
+    <script src="/app.js"></script>
+    <script>
+        function switchTab(mode) {
+            const loginForm = document.getElementById("loginForm");
+            const regForm = document.getElementById("registerForm");
+            const tabLogin = document.getElementById("tabLogin");
+            const tabRegister = document.getElementById("tabRegister");
+
+            if (mode === "login") {
+                loginForm.style.display = "block";
+                regForm.style.display = "none";
+                tabLogin.classList.add("active");
+                tabRegister.classList.remove("active");
+            } else {
+                loginForm.style.display = "none";
+                regForm.style.display = "block";
+                tabLogin.classList.remove("active");
+                tabRegister.classList.add("active");
+            }
+        }
+        initAuthPage();
+    </script>
+</body>
+</html>

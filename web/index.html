@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HouseRental - Find Your Next Home</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/" class="logo">🏠 HomeRentals</a>
+        <div class="nav-links" id="navLinks">
+            <!-- Dynamically populated by JS (Login / Dashboard / Logout) -->
+        </div>
+    </nav>
+
+    <!-- Hero Search Section -->
+    <header class="hero">
+        <h1>Find Your Ideal Rental Home</h1>
+        <p>Direct bookings between Landlords and Tenants with zero middlemen</p>
+
+        <form id="searchForm" class="search-box">
+            <div class="search-field">
+                <label for="cityFilter">City / Location</label>
+                <input type="text" id="cityFilter" placeholder="e.g. Bangalore, Mumbai">
+            </div>
+            <div class="search-field">
+                <label for="maxPriceFilter">Max Monthly Budget</label>
+                <input type="number" id="maxPriceFilter" placeholder="e.g. 35000">
+            </div>
+            <div class="search-field">
+                <label for="bhkFilter">Bedrooms (BHK)</label>
+                <select id="bhkFilter">
+                    <option value="">Any BHK</option>
+                    <option value="1">1 BHK</option>
+                    <option value="2">2 BHK</option>
+                    <option value="3">3 BHK</option>
+                    <option value="4">4+ BHK</option>
+                </select>
+            </div>
+            <button type="submit" class="search-btn">🔍 Search</button>
+        </form>
+    </header>
+
+    <!-- Main Content: Properties Grid -->
+    <main class="container">
+        <div class="section-header">
+            <h2>Available Rental Listings</h2>
+            <span id="resultsCount" style="color: var(--text-muted); font-size: 0.95rem;"></span>
+        </div>
+        <div id="propertiesGrid" class="grid">
+            <!-- Rendered by app.js -->
+        </div>
+    </main>
+
+    <!-- Modal: Book Property -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <h3 id="modalPropertyTitle" style="margin-bottom: 1rem;">Book Property</h3>
+            <p id="modalPropertyPrice" style="color: var(--primary); font-weight: 600; margin-bottom: 1.5rem;"></p>
+
+            <form id="bookingForm">
+                <input type="hidden" id="bookPropertyId">
+                <div class="form-group">
+                    <label for="bookStartDate">Move-in Date</label>
+                    <input type="date" id="bookStartDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookEndDate">Check-out Date</label>
+                    <input type="date" id="bookEndDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookTotalAmount">Estimated Total Rent (INR)</label>
+                    <input type="number" id="bookTotalAmount" required readonly>
+                </div>
+                <button type="submit" class="search-btn" style="width: 100%; margin-top: 1rem;">Confirm Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 House Rental Platform | Pure Java OOP & MySQL JDBC Fullstack Project</p>
+    </footer>
+
+    <script src="/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initHomePage();
+        });
+    </script>
+</body>
+</html>

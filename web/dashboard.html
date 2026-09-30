@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - House Rental</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/" class="logo">🏠 HomeRentals</a>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Browse Listings</a>
+            <button class="nav-btn btn-danger" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Dashboard Header -->
+        <div class="section-header">
+            <div>
+                <h1 id="userGreeting" style="font-size: 1.8rem;">Welcome Back</h1>
+                <p id="userRoleBadge" style="color: var(--text-muted); font-size: 0.95rem;"></p>
+            </div>
+            <div id="landlordActions" style="display: none;">
+                <button class="search-btn btn-primary" onclick="openAddPropertyModal()">+ Add New Property</button>
+            </div>
+        </div>
+
+        <!-- TENANT VIEW: My Bookings -->
+        <div id="tenantSection" style="display: none;">
+            <h3 style="margin-bottom: 1rem;">My Booking Inquiries</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Property</th>
+                            <th>Rental Duration</th>
+                            <th>Total Rent</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tenantBookingsBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- LANDLORD VIEW: Properties & Incoming Requests -->
+        <div id="landlordSection" style="display: none;">
+            <!-- Incoming Requests -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="margin-bottom: 1rem;">Incoming Booking Requests</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Property</th>
+                                <th>Prospective Tenant</th>
+                                <th>Duration</th>
+                                <th>Total Rent</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="landlordRequestsBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- My Listed Properties -->
+            <div>
+                <h3 style="margin-bottom: 1rem;">My Listed Properties</h3>
+                <div class="grid" id="landlordPropsGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Add Property (Landlord) -->
+    <div class="modal-overlay" id="addPropertyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAddPropertyModal()">&times;</button>
+            <h3 style="margin-bottom: 1.5rem;">List a New House for Rent</h3>
+
+            <form id="addPropertyForm">
+                <div class="form-group">
+                    <label for="newTitle">Property Title</label>
+                    <input type="text" id="newTitle" placeholder="e.g. Modern 2BHK in Whitefield" required>
+                </div>
+                <div class="form-group">
+                    <label for="newDesc">Description</label>
+                    <textarea id="newDesc" rows="3" placeholder="Amenities, furnishing, nearby landmarks..." required></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="newCity">City</label>
+                        <input type="text" id="newCity" placeholder="Bangalore" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="newBhk">Bedrooms (BHK)</label>
+                        <select id="newBhk" required>
+                            <option value="1">1 BHK</option>
+                            <option value="2">2 BHK</option>
+                            <option value="3">3 BHK</option>
+                            <option value="4">4+ BHK</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newAddress">Full Street Address</label>
+                    <input type="text" id="newAddress" placeholder="Flat 402, Sunshine Heights, Main Rd" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPrice">Monthly Rent (INR)</label>
+                    <input type="number" id="newPrice" placeholder="25000" required>
+                </div>
+                <div class="form-group">
+                    <label for="newImg">Image URL (Optional)</label>
+                    <input type="url" id="newImg" placeholder="https://images.unsplash.com/...">
+                </div>
+                <button type="submit" class="search-btn btn-primary" style="width: 100%; margin-top: 1rem;">Publish Listing</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 House Rental Platform | Pure Java OOP & MySQL JDBC Project</p>
+    </footer>
+
+    <script src="/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initDashboardPage();
+        });
+    </script>
+</body>
+</html>
