@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Web App",
+            "type": "shell",
+            "command": ".\\run-web.bat",
+            "windows": {
+                "command": ".\\run-web.bat"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Console App",
+            "type": "shell",
+            "command": ".\\run-console.bat",
+            "windows": {
+                "command": ".\\run-console.bat"
+            },
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
